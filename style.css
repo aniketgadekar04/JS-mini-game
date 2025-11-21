@@ -1,0 +1,18 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.game-container{
+  max-width: 600px;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+.color-grid{
+  display: grid;
+}
