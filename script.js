@@ -86,3 +86,31 @@ function startGame() {
     }
   }, 1000);
 }
+
+// mode
+
+let darkbutton = document.getElementById("dark");
+let lightbutton = document.getElementById("light");
+
+lightbutton.addEventListener("click", lightmode);
+darkbutton.addEventListener("click", darkmode);
+
+function lightmode() {
+  document.body.style.backgroundColor = "#f0f0f0";
+  let gc = document.querySelector(".game-container")
+
+  gc.style.backgroundColor = "white"
+  gc.style.color = "black"
+
+  document.getElementById('mode').style.boxShadow ="5px 5px 5px black"
+}
+
+function darkmode(){
+ document.body.style.backgroundColor = "#3333";
+  let gc = document.querySelector(".game-container")
+
+  gc.style.backgroundColor = "black"
+  gc.style.color = "white"
+
+  document.getElementById('mode').style.boxShadow ="5px 5px 5px white"
+}
