@@ -21,22 +21,68 @@ let colors = [
   "indigo",
 ];
 
-const grid = document.getElementById("grid")
-const targetColorDisplay = document.getElementById('target-color')
-const scoreDisplay = document.getElementById('score')
-const timeDisplay = document.getElementById('time')
+const grid = document.getElementById("grid");
+const targetColorDisplay = document.getElementById("target-color");
+const scoreDisplay = document.getElementById("score");
+const timeDisplay = document.getElementById("time");
 
 // function for random color
 
+function shuffleArray(colors) {
+  for (let i = colors.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [colors[i], colors[j]] = [colors[j], colors[i]];
+  }
+  return colors;
+}
 
+function createGrid() {
+  grid.innerHTML = ""; //agar already kuch ho to use khali karo.
+
+  colors = shuffleArray(colors); // array ke andar ke colors ki position change ho isliye.
+
+  console.log(colors);
+
+  targetColor = colors[Math.floor(Math.random() * 16)]; //randomly ek color choose ho isliye isme 0 se 15 ke bich me index ayega aur vo colors[] ke andar store hoga to hame target color milgaya.
+
+  targetColorDisplay.textContent = targetColor;
+
+  colors.forEach((color) => {
+    const box = document.createElement("div");
+    box.className = "color-box";
+    box.style.backgroundColor = color;
+    box.addEventListener("click", () => {
+      handleClick(color);
+    });
+    grid.appendChild(box);
+  });
+}
+
+function handleClick(clickedColor) {
+  if (clickedColor === targetColor) {
+    score++;
+    scoreDisplay.textContent = score;
+    createGrid();
+  }
+}
 
 function startGame() {
-  let time = 30;
+  let time = 20;
   let score = 0;
 
-  scoreDisplay.textContent = score
-  timeDisplay.textContent = time
-  createGrid()
+  scoreDisplay.textContent = score;
+  timeDisplay.textContent = time;
+  createGrid();
 
-  
+  clearInterval(timer);
+
+  timer = setInterval(() => {
+    time--;
+    timeDisplay.textContent = time;
+
+    if (time === 0) {
+      clearInterval(timer);
+      alert("Time's up!! your final score: " + score);
+    }
+  }, 1000);
 }
