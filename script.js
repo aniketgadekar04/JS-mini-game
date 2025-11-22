@@ -2,6 +2,7 @@ let targetColor = "";
 let time = 30;
 let score = 0;
 let timer;
+let para = document.getElementById('para')
 let colors = [
   "red",
   "orange",
@@ -67,8 +68,8 @@ function handleClick(clickedColor) {
 }
 
 function startGame() {
-  let time = 20;
-  let score = 0;
+  time = 20;
+  // let score = 0;
 
   scoreDisplay.textContent = score;
   timeDisplay.textContent = time;
@@ -82,7 +83,10 @@ function startGame() {
 
     if (time === 0) {
       clearInterval(timer);
-      alert("Time's up!! your final score: " + score);
+      // alert("Time's up!! your final score: " + score);
+      grid.innerHTML = "";
+      para.style.display = "none"
+      score = 0;
     }
   }, 1000);
 }
